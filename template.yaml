@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lambda-npm-layer
+  
+  Sample SAM Template for lambda-npm-layer
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: example-function/
+      Handler: example-function
+      Runtime: go1.x
+      Layers:
+        - !Ref NPMLayer
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+  NPMLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: NPMLayer
+      Description: npm layer
+      ContentUri: './npm-layer'
+      CompatibleRuntimes:
+        - go1.x
+      RetentionPolicy: Delete
