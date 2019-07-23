@@ -10,31 +10,12 @@ import (
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	if err := os.Setenv("NPM_CONFIG_USERCONFIG", "/tmp/.npmrc"); err != nil {
+	if err := os.Setenv("NPM_CONFIG_USERCONFIG", "/opt/nodejs/.npmrc"); err != nil {
 		return events.APIGatewayProxyResponse{
 			Body:       err.Error(),
 			StatusCode: 500,
 		}, nil
 	}
-	if err := exec.Command("npm", "config", "set", "cache", "/tmp/.npm").Run(); err != nil {
-		return events.APIGatewayProxyResponse{
-			Body:       err.Error(),
-			StatusCode: 500,
-		}, nil
-	}
-	if err := exec.Command("npm", "config", "set", "init-module", "/tmp/.npm-init.js").Run(); err != nil {
-		return events.APIGatewayProxyResponse{
-			Body:       err.Error(),
-			StatusCode: 500,
-		}, nil
-	}
-	if err := exec.Command("npm", "config", "set", "update-notifier", "false").Run(); err != nil {
-		return events.APIGatewayProxyResponse{
-			Body:       err.Error(),
-			StatusCode: 500,
-		}, nil
-	}
-
 	cmd := exec.Command("npm", "init", "-y")
 	cmd.Dir = "/tmp"
 	output, err := cmd.CombinedOutput()
