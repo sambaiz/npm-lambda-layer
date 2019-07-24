@@ -12,6 +12,7 @@ RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash - && \
     npm config set cache /tmp/.npm && \
     npm config set init-module /tmp/.npm-init.js && \ 
     npm config set update-notifier false && \
-    ln -s ../nodejs/node_modules/npm/bin/npm-cli.js ./bin/npm && \
-
+    chmod a+r $NPM_CONFIG_USERCONFIG && \
+    echo -e "#!/bin/sh\n/opt/nodejs/node_modules/npm/bin/npm-cli.js \$@" > ./bin/npm && \
+    chmod a+x ./bin/npm && \
     zip -yr /tmp/npm-layer.zip ./*
