@@ -1,4 +1,4 @@
-# lambda-npm-layer
+# npm-lambda-layer
 
 Enable `npm` command execution in Lambda function.
 
