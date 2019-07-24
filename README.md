@@ -13,7 +13,8 @@ $ tree -L 2 npm-layer
 npm-layer
 ├── bin
 │   ├── node
-│   └── npm -> ../nodejs/node_modules/npm/bin/npm-cli.js
+│   ├── npm
+│   └── npx
 └── nodejs
     └── node_modules
 ```
