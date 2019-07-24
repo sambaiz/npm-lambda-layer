@@ -8,9 +8,10 @@ Description: >
 Globals:
   Function:
     Timeout: 30
+    MemorySize: 1024
 
 Resources:
-  HelloWorldFunction:
+  ExampleFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: example-function/
