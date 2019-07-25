@@ -21,4 +21,4 @@ npm-layer
 
 ## Article
 
-[Lambda内でnpm installできるLayerを作った - sambaiz-net](https://www.sambaiz.net/article/233/)
+[Lambda上でnpm installできるLayerを作った - sambaiz-net](https://www.sambaiz.net/article/233/)
